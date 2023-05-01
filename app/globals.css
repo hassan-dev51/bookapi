@@ -40,3 +40,12 @@ body {
 ::-webkit-scrollbar {
   width: 0px;
 }
+.border-gradient {
+  border: 21.24px solid;
+  border-image-source: linear-gradient(
+      309.44deg,
+      #0029ff 0%,
+      rgba(0, 41, 255, 0) 50%
+    ),
+    linear-gradient(132.37deg, #ff0000 -6.93%, rgba(255, 0, 0, 0) 45.82%);
+}

@@ -3,9 +3,11 @@ import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useState } from "react";
 
 type FormData = {
   name: string;
+  lastname: string;
   email: string;
   password: string;
 };
@@ -15,6 +17,10 @@ const schema = yup.object().shape({
     .string()
     .matches(/^[A-Za-z ]+$/, "Only alphabets are allowed")
     .required("Name is required"),
+  lastname: yup
+    .string()
+    .matches(/^[A-Za-z ]+$/, "Only alphabets are allowed")
+    .required("Lastname is required"),
   email: yup
     .string()
     .matches(
@@ -37,10 +43,33 @@ const Reginster = () => {
     register,
     formState: { errors },
   } = useForm<FormData>({ resolver: yupResolver(schema) });
-
-  const FormSubmit: SubmitHandler<FormData> = (d, e) => {
-    console.log(d);
-    e?.target.reset();
+  const [result, setResult] = useState("");
+  const FormSubmit: SubmitHandler<FormData> = async (d, e) => {
+    try {
+      const res = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: d.name,
+          lastname: d.lastname,
+          email: d.email,
+          password: d.password,
+        }),
+      });
+      if (res.status === 200) {
+        setResult("Registration successful");
+        alert("Registration successful");
+        e?.target.reset();
+      } else {
+        setResult("Registration failed");
+        alert("Registration failed");
+      }
+      return res.text();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -65,6 +94,21 @@ const Reginster = () => {
           {errors.name && (
             <p className="text-red-400 p-1">{errors.name.message}</p>
           )}
+          {/* last-name */}
+          <label className="flex flex-col">
+            <span className=" font-medium mb-4">Last Name</span>
+            <input
+              type="text"
+              {...register("lastname")}
+              placeholder="What's your last name?"
+              required
+              className="bg-tertiary py-4 px-6 placeholder:text-secondary  rounded-lg outline-none border-none font-medium"
+            />
+          </label>
+          {errors.lastname && (
+            <p className="text-red-400 p-1">{errors.lastname.message}</p>
+          )}
+
           {/* email */}
           <label className="flex flex-col">
             <span className=" font-medium mb-4">Email</span>
@@ -108,6 +152,8 @@ const Reginster = () => {
           Login
         </Link>
       </div>
+      {result === "200" && <p>Registration successful</p>}
+      {result === "error" && <p>Registration failed</p>}
     </div>
   );
 };
