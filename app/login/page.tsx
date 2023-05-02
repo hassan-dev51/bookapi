@@ -14,10 +14,14 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      <div className="flex-[0.75] bg-black-100 p-8 rounded-2xl">
+    <div className="bg-white min-h-[85vh]">
+      <div className="w-[660px] m-auto p-8">
+        <h2 className="text-[#1A202C] text-[48px] font-bold capitalize">
+          Login
+        </h2>
+
         <form
-          className="mt-12 flex flex-col gap-5"
+          className="mt-12 flex flex-col gap-5 "
           method="GET"
           onSubmit={handleSubmit(LoginSubmit)}
         >
@@ -28,7 +32,7 @@ const Login = () => {
               {...register("email")}
               required
               placeholder="What's your email address?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary  rounded-lg outline-none border-none font-medium"
+              className="bg-[#EDF2F7] py-4 px-6 placeholder:text-secondary outline-none border-none font-medium"
             />
           </label>
           <label className="flex flex-col">
@@ -38,29 +42,23 @@ const Login = () => {
               {...register("password", { required: true })}
               autoComplete="off"
               placeholder="Enter password?"
-              className="bg-tertiary py-4 px-6 placeholder:text-secondary  rounded-lg outline-none border-none font-medium"
+              className="bg-[#EDF2F7] py-4 px-6 placeholder:text-secondary outline-none border-none font-medium"
             />
             {errors.password && <span>this field is required</span>}
           </label>
 
           <button
             type="submit"
-            className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit  font-bold shadow-md shadow-primary"
+            className="bg-[#8ac919] py-3 px-8 text-[20px] outline-none w-full text-white font-normal hover:bg-white hover:text-[#8ac919] hover:outline-[#8ac919]"
           >
-            Send
+            Login
           </button>
         </form>
-        <p className="my-4">
-          Not have account {"  "}
-          <Link href="/register">
-            <button
-              type="button"
-              className="text-xl font-extrabold text-gray-600"
-            >
-              Sign up
-            </button>
-          </Link>
-        </p>
+
+        <h3 className="text-[#1A202C] text-[16px] font-normal mt-6">
+          Don&apos;t have an account,
+          <Link href="/register">Sign Up</Link>
+        </h3>
       </div>
     </div>
   );

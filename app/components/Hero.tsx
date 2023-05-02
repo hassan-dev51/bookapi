@@ -8,7 +8,7 @@ const Hero = () => {
           Learning Makes Man Perfect
         </h1>
 
-        <p className="capitalize text-gray-400">
+        <p className="capitalize text-[#1A202C]">
           we deals with all kinds of books related to technology medical
           engineering fashion agriculture and history
         </p>
@@ -16,7 +16,7 @@ const Hero = () => {
         <h3>
           <Link
             href={"#main"}
-            className="capitalize text-gray-400  border p-4 rounded-full bg-slate-500 outline-none"
+            className="capitalize text-[#fff]  border-none p-4 rounded-full bg-slate-500 outline-none"
           >
             Check Books
           </Link>

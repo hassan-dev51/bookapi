@@ -17,7 +17,7 @@ const Main = async () => {
 
   return (
     <div id="main">
-      <h1 className="py-8 text-5xl capitalize text-center tracking-wide">
+      <h1 className="py-8 text-5xl capitalize text-[#1A202C] text-center tracking-wide">
         Available books
       </h1>
 
