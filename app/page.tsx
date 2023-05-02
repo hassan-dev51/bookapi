@@ -5,6 +5,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <Hero />
+      {/* @ts-expect-error Server Component */}
       <Main />
     </main>
   );
