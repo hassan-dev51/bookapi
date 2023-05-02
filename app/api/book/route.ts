@@ -1,6 +1,7 @@
 import BookData from "@/app/models/bookdata";
 import dbConnect from "@/app/utils/dbConnection";
-import { NextResponse } from "next/server";
+import { NextApiRequest } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
@@ -21,9 +22,15 @@ export async function POST(request: Request) {
   }
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
     await dbConnect();
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("_id");
+    if (id) {
+      const res = await BookData.findById(id);
+      return NextResponse.json({ data: res });
+    }
     const res = await BookData.find({});
     return NextResponse.json({ data: res });
   } catch (error) {

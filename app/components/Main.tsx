@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import { Book } from "../models/bookdata";
 
 export const getBookData = async () => {
   const data = await fetch("http://localhost:3000/api/book", {
@@ -12,9 +13,7 @@ export const getBookData = async () => {
 };
 
 const Main = async () => {
-  const books = await getBookData();
-  const bookApi = books.data;
-  console.log(bookApi);
+  const { data } = await getBookData();
 
   return (
     <div id="main">
@@ -23,8 +22,8 @@ const Main = async () => {
       </h1>
 
       <section>
-        <div className="grid grid-cols-3 gap-6 ">
-          {bookApi.map((book: any) => (
+        <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 ">
+          {data.map((book: Book) => (
             <div
               className="border rounded-sm p-4 m-2 bg-red-500"
               key={book._id}
@@ -41,13 +40,7 @@ const Main = async () => {
                 <h2>price | {book.price}</h2>
               </div>
               <div className="flex justify-around">
-                <button
-                  type="button"
-                  className="uppercase border rounded-full p-2 text-gray-200 mt-4"
-                >
-                  order now
-                </button>
-                <Link href="/">
+                <Link href={`/book/${book._id}`}>
                   <button
                     type="button"
                     className="uppercase border rounded-full p-2 text-gray-200 mt-4"

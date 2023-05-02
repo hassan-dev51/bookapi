@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
-interface Book {
+export interface Book {
+  _id: string;
   booktitle: string;
   bookauthor: string;
   description: string;
