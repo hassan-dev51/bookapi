@@ -1,15 +1,42 @@
 "use client";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
+type User = {
+  email: string;
+  password: string;
+};
 const Login = () => {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm();
+  } = useForm<User>();
+  const router = useRouter();
 
-  const LoginSubmit = (d: any) => {
+  const LoginSubmit: SubmitHandler<User> = async (d, e) => {
+    const res = await fetch("http://localhost:3000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: d.email, password: d.password }),
+    });
+
+    if (res.status === 200) {
+      alert("Login successful");
+      e?.target.reset();
+      setTimeout(() => {
+        router.push("/order");
+      }, 100);
+    } else if (res.status === 429) {
+      alert("invalid password and email");
+    } else {
+      alert("internal error");
+    }
     console.log(d);
   };
 

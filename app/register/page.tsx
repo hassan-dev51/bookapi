@@ -62,6 +62,9 @@ const Reginster = () => {
         setResult("Registration successful");
         alert("Registration successful");
         e?.target.reset();
+      } else if (res.status === 400) {
+        setResult("Email already registered");
+        alert("Email already registered");
       } else {
         setResult("Registration failed");
         alert("Registration failed");

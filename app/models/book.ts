@@ -5,6 +5,7 @@ interface User {
   lastname: string;
   email: string;
   password: string;
+  tokens: string[];
 }
 const schemaOption: SchemaOptions<User> = {
   timestamps: { createdAt: true, updatedAt: true },
@@ -27,6 +28,14 @@ const contactSchema = new mongoose.Schema<User>(
       type: String,
       required: true,
     },
+    tokens: [
+      {
+        token: {
+          type: String,
+          required: true,
+        },
+      },
+    ],
   },
   schemaOption
 );
