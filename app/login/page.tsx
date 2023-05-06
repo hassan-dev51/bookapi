@@ -1,9 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 type User = {
   email: string;
@@ -38,6 +36,7 @@ const Login = () => {
       alert("internal error");
     }
     console.log(d);
+    return res.json();
   };
 
   return (

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 
 type params = {
   params: {
@@ -37,12 +38,14 @@ const SingleBook = async ({ params }: params) => {
           <h1>Available | {data.available ? "In Stock" : "Out of Stock"}</h1>
         </div>
         <div>
-          <button
-            type="button"
-            className="uppercase border-none rounded-full p-2 text-gray-600 mt-4 bg-gray-400"
-          >
-            order now
-          </button>
+          <Link href="/order">
+            <button
+              type="button"
+              className="uppercase border-none rounded-full p-2 text-gray-600 mt-4 bg-gray-400"
+            >
+              order now
+            </button>
+          </Link>
         </div>
       </div>
     </div>

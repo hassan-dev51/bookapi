@@ -10,7 +10,7 @@ export const getBookData = async () => {
     },
     cache: "no-store",
   });
-  return await data.json();
+  return data.json();
 };
 
 const Main = async () => {

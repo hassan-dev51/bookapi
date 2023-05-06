@@ -46,18 +46,22 @@ const Reginster = () => {
   const [result, setResult] = useState("");
   const FormSubmit: SubmitHandler<FormData> = async (d, e) => {
     try {
-      const res = await fetch("http://localhost:3000/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: d.name,
-          lastname: d.lastname,
-          email: d.email,
-          password: d.password,
-        }),
-      });
+      const res = await fetch(
+        "http://localhost:3000/api/register",
+
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: d.name,
+            lastname: d.lastname,
+            email: d.email,
+            password: d.password,
+          }),
+        }
+      );
       if (res.status === 200) {
         setResult("Registration successful");
         alert("Registration successful");
