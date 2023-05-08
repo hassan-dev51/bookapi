@@ -29,7 +29,7 @@ const Login = () => {
       e?.target.reset();
       setTimeout(() => {
         router.push("/order");
-      }, 100);
+      }, 1000);
     } else if (res.status === 429) {
       alert("invalid password and email");
     } else {

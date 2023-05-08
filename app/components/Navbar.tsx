@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Logout from "./Logout";
 
 const Navbar = () => {
   return (
@@ -7,12 +8,15 @@ const Navbar = () => {
         <Link href="/">
           <h1 className="text-2xl font-extrabold text-white">Books</h1>
         </Link>
-
-        <Link href="/register">
-          <button className="btn-bg md:px-4 md:py-3 px-2 py-1 md:text-xl text-sm font-bold outline-none border-none rounded-[10px]">
-            Sign Up
-          </button>
-        </Link>
+        <div className="flex">
+          <Link href="/register">
+            <button className="btn-bg md:px-4 md:py-3 px-2 py-1 md:text-xl text-sm font-bold outline-none border-none rounded-[10px]">
+              Sign Up
+            </button>
+          </Link>
+          {/* @ts-expect-error Server Component */}
+          <Logout />
+        </div>
       </nav>
     </div>
   );
